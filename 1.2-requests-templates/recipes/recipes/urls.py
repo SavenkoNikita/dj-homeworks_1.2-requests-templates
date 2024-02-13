@@ -22,5 +22,7 @@ urlpatterns = [
     # здесь зарегистрируйте вашу view-функцию
     path('omlet/', recipe, name='omlet'),
     path('pasta/', recipe, name='pasta'),
+    path('buter/', recipe, name='buter'),
+    path('robin-gud/', recipe, name='robin-gud'),
     path('admin/', admin.site.urls),
 ]

@@ -21,7 +21,7 @@ DATA = {
     'robin-gud': {
         'яйца, шт': 2,
         'лук, шт': 1,
-        'тесто, г': 50,
+        'тесто, г': 20,
     },
 }
 
@@ -38,20 +38,18 @@ DATA = {
 
 def recipe(request, servings=1):
 
-    # recipes = {
-    #     DATA.get('omlet'): reverse('omlet'),
-    # }
-    # context = recipes.items()
-
     pages = {
         'Омлет': reverse('omlet'),
         'Паста': reverse('pasta'),
-        'Бутер': reverse('buter')
+        'Бутерброд': reverse('buter'),
+        'Пирожок с яйцами и луком': reverse('robin-gud')
     }
 
-    # context и параметры render менять не нужно подробнее о них мы поговорим на следующих лекциях
     context = {
-        'pages': pages
+      'recipe': {
+        'ингредиент1': 'количество1',
+        'ингредиент2': 'количество2',
+      }
     }
 
     print(context)
