@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.urls import reverse
 
 DATA = {
     'omlet': {
@@ -36,21 +35,21 @@ DATA = {
 #   }
 # }
 
-def recipe(request, servings=1):
+def recipe(request, dish):
+    ingredients = DATA.get(dish, {})
 
-    pages = {
-        'Омлет': reverse('omlet'),
-        'Паста': reverse('pasta'),
-        'Бутерброд': reverse('buter'),
-        'Пирожок с яйцами и луком': reverse('robin-gud')
-    }
+    if request.GET.get('servings') is not None:
+        servings = request.GET.get('servings')
+    else:
+        servings = 1
 
-    context = {
-      'recipe': {
-        'ингредиент1': 'количество1',
-        'ингредиент2': 'количество2',
-      }
-    }
+    temp_dict = {}
+    for name, value in ingredients.items():
+        if (float(value) * int(servings)) % 1 == 0:
+            value = int(float(value) * int(servings))
+        else:
+            value = float(value) * int(servings)
+        temp_dict[name] = value
 
-    print(context)
+    context = {'recipe': temp_dict}
     return render(request, 'calculator/index.html', context)

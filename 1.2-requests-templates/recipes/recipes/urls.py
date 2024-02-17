@@ -20,9 +20,9 @@ from calculator.views import recipe
 
 urlpatterns = [
     # здесь зарегистрируйте вашу view-функцию
-    path('omlet/', recipe, name='omlet'),
-    path('pasta/', recipe, name='pasta'),
-    path('buter/', recipe, name='buter'),
-    path('robin-gud/', recipe, name='robin-gud'),
+    path('<dish>/', recipe, name='omlet'),
+    path('<dish>/', recipe, name='pasta'),
+    path('<dish>/', recipe, name='buter'),
+    path('<dish>/', recipe, name='robin-gud'),
     path('admin/', admin.site.urls),
 ]
