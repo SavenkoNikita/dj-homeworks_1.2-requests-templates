@@ -14,5 +14,6 @@ class Phone(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.name)
-        return super().save(*args, **kwargs) - models
+            if super().save(*args, **kwargs) is not None:
+                return super().save(*args, **kwargs) - models
 
